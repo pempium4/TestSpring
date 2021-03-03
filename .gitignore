@@ -6,3 +6,4 @@ out
 gradlew
 gradlew.bat
 settings.gradle
+src/test

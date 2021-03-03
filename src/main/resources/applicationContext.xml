@@ -7,6 +7,10 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <!--импортировать внешний файл значений-->
+    <context:property-placeholder location="musicPlayer.properties"/>
+
+    <!--создать новый бин (объект)-->
     <bean id="testBean"
           class="TestSpring.testBean">
         <constructor-arg value="Dima"/>
@@ -14,9 +18,13 @@
     <bean id="musicBean"
           class="Music.RockMusic">
     </bean>
+
+    <!--импортировать бин в другой объект-->
     <bean id="musicPlayer"
           class="Music.MusicPlayer">
         <constructor-arg ref="musicBean"/>
+        <!--setter (useless)<property name="music" ref="musicBean"/>-->
+        <property name="volume" value="${musicPlayer.volume}"/>
     </bean>
 
 </beans>

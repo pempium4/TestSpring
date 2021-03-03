@@ -14,6 +14,7 @@ public class Main {
 
         MusicPlayer song = context.getBean("musicPlayer", MusicPlayer.class);
         song.playMusic();
+        System.out.println("Volume: " + song.getVolume());
 
         context.close();
     }
