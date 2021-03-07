@@ -7,41 +7,9 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <!--импортировать внешний файл значений-->
+    <!--Сканирование бинов с помощью аннотаций-->
+    <context:component-scan base-package="Music"/>
+
     <context:property-placeholder location="musicPlayer.properties"/>
-
-    <!--создать новый бин (объект) и поместить в конструктор-->
-    <bean id="testBean"
-          class="TestSpring.testBean">
-        <constructor-arg value="Dima"/>
-    </bean>
-
-    <!--создать бин (объект)-->
-    <bean id="musicBean"
-          class="Music.RockMusic">
-    </bean>
-    <!--Методы, которые вызываются перед созданием бина и после завершения Spring app-->
-    <!--Работает лишь сo scope="singleton" и нет со scope="prototype"-->
-    <!--Фабричный метод вызывается единожды-->
-    <bean id="musicBean2"
-          class="Music.ClassicalMusic"
-          init-method="doMyInit"
-          destroy-method="doMyDestroy">
-    </bean>
-
-    <!--импортировать бин в другой объект (Dependency injection)-->
-    <bean id="musicPlayer"
-          class="Music.MusicPlayer"
-          scope="prototype">
-        <!--<constructor-arg ref="musicBean"/>-->
-        <constructor-arg>
-            <list>
-                <ref bean="musicBean"/>
-                <ref bean="musicBean2"/>
-            </list>
-        </constructor-arg>
-        <!--setter (useless)-->
-        <property name="volume" value="${musicPlayer.volume}"/>
-    </bean>
 
 </beans>

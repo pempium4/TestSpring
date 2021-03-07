@@ -1,36 +1,27 @@
 package Music;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+@Component
 public class MusicPlayer {
-    private List<Music> musicList = new ArrayList<>();
+//    @Autowired
+//    @Qualifier ("musicBean")
     private Music music;
+
+    @Value("${musicPlayer.volume}")
     private int volume;
 
-    public MusicPlayer(Music music) {
+//    автоматическое внедрение зависимостей (Dep Inj)
+    @Autowired
+    public MusicPlayer(@Qualifier("musicBean") Music music) {
         this.music = music;
     }
 
-    public MusicPlayer(List<Music> musicList){
-        this.musicList = musicList;
-    }
-
-    //setter (useless)
-    /*public MusicPlayer(){};
-
-    public void setMusic(Music music) {
-        musicList.add(music);
-    }*/
-
     public void playMusic() {
-        for (Music music:musicList) {
-            System.out.println("Playing... " + music.getSong());
-        }
-    }
-
-    public void setVolume(int volume) {
-        this.volume = volume;
+        System.out.println("Playing... " + music.getSong());
     }
 
     public int getVolume() {
