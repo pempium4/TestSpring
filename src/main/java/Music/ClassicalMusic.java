@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
-@Component("musicBean")
-@Scope("prototype")
+//@Component("musicBean")
+//@Scope("prototype")
 public class ClassicalMusic implements Music {
 
     @Override
